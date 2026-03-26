@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base: #000000;
+    --bg-surface: #0a0a0a;
+    --bg-elevated: #141414;
+    --bg-hover: #1e1e1e;
+    --bg-active: #282828;
+    --text-primary: #e4e4e7;
+    --text-secondary: #a1a1aa;
+    --text-tertiary: #71717a;
+    --accent-primary: #22d3ee;
+    --accent-hover: #06b6d4;
+    --accent-glow: rgba(34, 211, 238, 0.5);
+    --accent-dim: rgba(34, 211, 238, 0.15);
+  }
+
+  * {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  body {
+    @apply bg-bg-base text-text-primary font-body antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply h-12 px-8 bg-accent-primary text-bg-base font-semibold rounded-md
+           hover:bg-accent-hover transition-all duration-150
+           hover:shadow-glow-accent active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply h-12 px-8 border-2 border-accent-primary text-accent-primary font-semibold rounded-md
+           hover:bg-accent-dim transition-all duration-150
+           hover:shadow-glow-accent;
+  }
+
+  .card {
+    @apply bg-bg-elevated border border-border rounded-lg p-6
+           shadow-glow-subtle transition-all duration-200
+           hover:bg-bg-hover hover:border-border-strong;
+  }
+
+  .data-card {
+    @apply bg-bg-elevated border border-border rounded-lg p-6
+           shadow-glow-subtle transition-all duration-200
+           hover:bg-bg-hover hover:border-border-strong;
+  }
+
+  .nav-link {
+    @apply text-text-secondary font-semibold text-sm
+           hover:text-text-primary transition-colors duration-150
+           relative after:absolute after:bottom-0 after:left-0 after:w-0
+           after:h-0.5 after:bg-accent-primary after:transition-all
+           hover:after:w-full;
+  }
+
+  .nav-link-active {
+    @apply text-accent-primary after:w-full;
+  }
+
+  .status-active {
+    @apply px-3 py-1 text-xs font-semibold uppercase rounded-sm
+           bg-status-success/15 text-status-success border border-status-success;
+  }
+
+  .status-paused {
+    @apply px-3 py-1 text-xs font-semibold uppercase rounded-sm
+           bg-status-warning/15 text-status-warning border border-status-warning;
+  }
+
+  .status-error {
+    @apply px-3 py-1 text-xs font-semibold uppercase rounded-sm
+           bg-status-error/15 text-status-error border border-status-error;
+  }
+
+  .status-draft {
+    @apply px-3 py-1 text-xs font-semibold uppercase rounded-sm
+           bg-text-secondary/15 text-text-secondary border border-border;
+  }
+}
+
+@layer utilities {
+  .font-mono-data {
+    @apply font-mono tracking-wide;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(34, 211, 238, 0.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
